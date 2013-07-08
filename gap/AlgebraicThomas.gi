@@ -258,9 +258,9 @@ InstallMethod( QuasiAffineSet,
           IsFinitelyPresentedSubmoduleRep and ConstructedAsAnIdeal ],
         
   function( I, J )
-    local R, table, var, X;
+    local R, table, i, j, var, X;
     
-    if IsOne( I ) then
+    if IsOne( I ) or IsZero( J ) then
         ## EmptyScheme
     elif IsOne( J ) then
         ## return Spec( R / I );
@@ -270,14 +270,33 @@ InstallMethod( QuasiAffineSet,
     
     table := AlgebraicThomasData( R );
     
-    I := MatrixOfSubobjectGenerators( I );
-    J := MatrixOfSubobjectGenerators( J );
+    i := MatrixOfSubobjectGenerators( I );
+    j := MatrixOfSubobjectGenerators( J );
+    
+    if IsZero( i ) then
+        i := HomalgZeroMatrix( 1, 1, R );
+    fi;
+    
+    if IsZero( j ) then
+        j := HomalgZeroMatrix( 1, 1, R );
+    fi;
     
     var := Indeterminates( R );
     
-    X := homalgSendBlocking( [ "AlgebraicThomas[AlgebraicThomasDecompositionMany](AlgebraicThomas[ineqOr](map(op,convert(", I, ",listlist)),map(op,convert(", J, ",listlist ))),[", var, "], use_options=", table, ")" ], "break_lists", HOMALG_IO.Pictograms.QuasiAffineSet );
+    X := homalgSendBlocking( [ "AlgebraicThomas[AlgebraicThomasDecompositionMany](AlgebraicThomas[ineqOr](map(op,convert(", i, ",listlist)),map(op,convert(", j, ",listlist ))),[", var, "], use_options=", table, ")" ], "break_lists", HOMALG_IO.Pictograms.QuasiAffineSet );
     
-    return _QuasiAffineSet( X, R );
+    X := _QuasiAffineSet( X, R );
+    
+    X!.DefiningIdeal := I;
+    X!.DefiningIdealOfComplement := J;
+    
+    if IsOne( I ) or IsZero( J ) then
+        SetIsEmpty( X, true );
+    elif IsOne( J ) then
+        SetIsAffine( X, true );
+    fi;
+    
+    return X;
     
 end );
 
