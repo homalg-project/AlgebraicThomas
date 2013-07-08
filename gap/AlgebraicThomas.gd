@@ -56,6 +56,15 @@ DeclareAttributeWithDocumentation( "QuasiAffineSet",
         [ "Algebraic_Thomas", "Constructors" ]
         );
 
+DeclareOperationWithDocumentation( "Project",
+        [ IsScheme ],
+        [ "The projection of a quasi-affine scheme <A>X</A>",
+          "to the affine space given by ...." ],
+        "a homalg pointer",
+        "X, vars",
+        [ "Algebraic_Thomas", "Constructors" ]
+        );
+
 DeclareAttributeWithDocumentation( "CountingPolynomial",
         IsScheme,
         [ "The counting polynomial of the quasi-affine scheme <A>X</A>." ],

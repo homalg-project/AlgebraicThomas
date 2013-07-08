@@ -313,6 +313,7 @@ InstallMethod( QuasiAffineSet,
     fi;
     
     var := Indeterminates( R );
+    var := Reversed( var );
     
     X := homalgSendBlocking( [ "AlgebraicThomas[AlgebraicThomasDecompositionMany](AlgebraicThomas[ineqOr](map(op,convert(", i, ",listlist)),map(op,convert(", j, ",listlist ))),[", var, "], use_options=", table, ")" ], "break_lists", HOMALG_IO.Pictograms.QuasiAffineSet );
     
@@ -417,6 +418,34 @@ InstallMethod( Complement,
     Z := homalgSendBlocking( [ "AlgebraicThomas[Complement](", X!.Thomas_system, ")" ], HOMALG_IO.Pictograms.QuasiAffineSet );
     
     return _QuasiAffineSet( Z, HomalgRing( X ) );
+    
+end );
+
+##
+InstallMethod( Project,
+        "for a quasi-affine scheme and list of indeterminates",
+        [ IsScheme and IsQuasiAffine and IsAlgebraicThomasDecompositionSchemeRep ],
+        
+  function( X )
+    local R, vars, Xc, Y;
+    
+    R := HomalgRing( X );
+    
+    if not HasBaseRing( R ) then
+        Error( "the underlying ring is not filtered\n" );
+    fi;
+    
+    R := BaseRing( R );
+    
+    vars := Indeterminates( R );
+    
+    ## vars sollen ganz hinten stehen bei HomalgRing( X );
+    
+    Xc := homalgSendBlocking( [ "AlgebraicThomas[Comprehensive](", X!.Thomas_system, Length( vars ), ")" ], HOMALG_IO.Pictograms.QuasiAffineSet );
+    
+    Y := homalgSendBlocking( [ "map(a->a[1],", Xc, ")" ], HOMALG_IO.Pictograms.QuasiAffineSet );
+    
+    return _QuasiAffineSet( Y, R );
     
 end );
 
