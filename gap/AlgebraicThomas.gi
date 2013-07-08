@@ -83,6 +83,36 @@ InstallMethod( Closure,
 end );
 
 ##
+InstallMethod( ADefiningIdealOfComplement,
+        "for a quasi-affine scheme",
+        [ IsScheme and IsQuasiAffine and IsAlgebraicThomasDecompositionSchemeRep ],
+        
+  function( X )
+    local CX, I, V, IpJ, J;
+    
+
+    
+    CX := Complement( X );
+    
+    I := DefiningIdeal( Closure( X ) );
+    
+    V := QuasiAffineSet( I );
+    
+    IpJ := Intersect( CX, V );
+    
+    IpJ := DefiningIdeal( Closure( IpJ ) );
+    
+    J := MatrixOfSubobjectGenerators( IpJ );
+    
+    J := DecideZero( J, I );
+    
+    J := CertainRows( J, NonZeroRows( J ) );
+    
+    return LeftSubmodule( J );
+    
+end );
+
+##
 InstallGlobalFunction( VariableForCountingPolynomial,
   function( arg )
     local u;
@@ -289,6 +319,7 @@ InstallMethod( QuasiAffineSet,
     
     X!.DefiningIdeal := I;
     X!.DefiningIdealOfComplement := J;
+    SetADefiningIdealOfComplement( X, J );
     
     if IsOne( I ) or IsZero( J ) then
         SetIsEmpty( X, true );
