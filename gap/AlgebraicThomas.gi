@@ -239,9 +239,6 @@ InstallMethod( AlgebraicThomasData,
     
     if HasDegreeOverPrimeField( r ) then
         d := DegreeOverPrimeField( r );
-        if d > 1 then
-            Error( "nonprime fields are not supported yet\n" );
-        fi;
     else
         d := 1;
     fi;
@@ -251,6 +248,10 @@ InstallMethod( AlgebraicThomasData,
     r!.AlgebraicThomasData := option_table;
     
     homalgSendBlocking( [ "AlgebraicThomas[AlgebraicThomasOptions](", option_table, ",\"characteristic\",", c, ")" ], "need_command", HOMALG_IO.Pictograms.define );
+    
+    if d > 1 then
+        homalgSendBlocking( [ "AlgebraicThomas[AlgebraicThomasOptions](", option_table, ",\"extension\",[", r!.NameOfPrimitiveElement, ",", r!.MinimalPolynomialOfPrimitiveElement, "])" ], "need_command", HOMALG_IO.Pictograms.define );
+    fi;
     
     homalgSendBlocking( [ "AlgebraicThomas[AlgebraicThomasOptions](", option_table, ",\"warnings\",false)" ], "need_command", HOMALG_IO.Pictograms.define );
     

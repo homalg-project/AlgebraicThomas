@@ -29,7 +29,7 @@ Subtitle := "Algebraic Thomas decomposition",
 ##  of valid version numbers. For an automatic package distribution update
 ##  you must provide a new version number even after small changes.
 Version := Maximum( [
-  "2013.07.01", ## Mohamed's version
+  "2013.07.04", ## Mohamed's version
 ## this line prevents merge conflicts
   "2013.06.03", ## Thomas' version
 ] ),
@@ -270,6 +270,7 @@ Dependencies := rec(
   NeededOtherPackages := [
                       [ "Sheaves", ">= 2013.06.10" ],
                       [ "HomalgToCAS", ">= 2013.06.21" ],
+                      [ "RingsForHomalg", ">= 2013.07.04" ],
                       [ "GAPDoc", ">= 1.1" ]
                       ],
   # without these the package will issue a warning while loading

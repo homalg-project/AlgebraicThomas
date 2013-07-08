@@ -1,8 +1,10 @@
 LoadPackage( "RingsForHomalg" );
 
 Q := HomalgFieldOfRationalsInMaple( );
+GF8 := HomalgRingOfIntegersInMaple( 2, 3, Q );
 
 R := Q * "x,y,z";
+S := GF8 * "x,y,z";
 
 LoadPackage( "Modules" );
 
