@@ -301,6 +301,17 @@ InstallMethod( QuasiAffineSet,
 end );
 
 ##
+InstallMethod( QuasiAffineSet,
+        "for two homalg ideals",
+        [ IsFinitelyPresentedSubmoduleRep and ConstructedAsAnIdeal ],
+        
+  function( I )
+    
+    return QuasiAffineSet( I, I^0 );
+    
+end );
+
+##
 InstallMethod( Intersect2,
         "for two quasi-affine schemes",
         [ IsScheme and IsQuasiAffine and IsAlgebraicThomasDecompositionSchemeRep,

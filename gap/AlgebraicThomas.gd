@@ -47,6 +47,15 @@ DeclareOperationWithDocumentation( "QuasiAffineSet",
         [ "Algebraic_Thomas", "Constructors" ]
         );
 
+DeclareAttributeWithDocumentation( "QuasiAffineSet",
+        IsHomalgModule,
+        [ "Initializes an algebraic Thomas system representing the affine set",
+          "<M>V(</M><A>I</A><M>)</M>." ],
+        "a homalg pointer",
+        "I",
+        [ "Algebraic_Thomas", "Constructors" ]
+        );
+
 DeclareAttributeWithDocumentation( "CountingPolynomial",
         IsScheme,
         [ "The counting polynomial of the quasi-affine scheme <A>X</A>." ],
