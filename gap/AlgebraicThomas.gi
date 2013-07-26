@@ -174,6 +174,17 @@ InstallMethod( IsAffine,
     
 end );
 
+##
+InstallMethod( DimensionOfAmbientSpace,
+        "for a quasi-affine scheme",
+        [ IsScheme and IsQuasiAffine and IsAlgebraicThomasDecompositionSchemeRep ],
+        
+  function( X )
+    
+    return KrullDimension( HomalgRing( X ) );
+    
+end );
+
 ####################################
 #
 # global functions and operations:
