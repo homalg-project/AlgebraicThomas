@@ -56,7 +56,7 @@ InstallGlobalFunction( _LoadAlgebraicThomas,
   function( stream )
     local display_color, git_ref;
     
-    homalgSendBlocking( [ "libname := \"", PackageInfo( "AlgebraicThomas" )[1].InstallationPath, "/AlgebraicThomas/lib\",libname" ], "need_command", stream, HOMALG_IO.Pictograms.initialize );
+    homalgSendBlocking( [ "libname := \"", PackageInfo( "AlgebraicThomas" )[1].InstallationPath, "/maple\",libname" ], "need_command", stream, HOMALG_IO.Pictograms.initialize );
     
     if ( not ( IsBound( HOMALG_IO.show_banners ) and HOMALG_IO.show_banners = false )
          and not ( IsBound( stream.show_banner ) and stream.show_banner = false ) )
