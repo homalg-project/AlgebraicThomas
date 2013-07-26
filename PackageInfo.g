@@ -23,7 +23,7 @@ PackageName := "AlgebraicThomas",
 
 ##  This may be used by a default banner or on a Web page, should fit on
 ##  one line.
-Subtitle := "Algebraic Thomas decomposition",
+Subtitle := "Constructible sets via algebraic Thomas decomposition",
 
 ##  See '?Extending: Version Numbers' in GAP help for an explanation
 ##  of valid version numbers. For an automatic package distribution update
@@ -31,7 +31,7 @@ Subtitle := "Algebraic Thomas decomposition",
 Version := Maximum( [
   "2013.07.06", ## Mohamed's version
 ## this line prevents merge conflicts
-  "2013.07.10", ## Thomas' version
+  "2013.07.11", ## Thomas' version
 ] ),
 ##  Please adjust also the VERSION file in the package directory when
 ##  changing this.
@@ -251,7 +251,7 @@ PackageDoc := rec(
   # a longer title of the book, this together with the book name should
   # fit on a single text line (appears with the '?books' command in GAP)
   # LongTitle := "Elementary Divisors of Integer Matrices",
-  LongTitle := "Algebraic Thomas decomposition",
+  LongTitle := "Constructible sets via algebraic Thomas decomposition",
   # Should this help book be autoloaded when GAP starts up? This should
   # usually be 'true', otherwise say 'false'. 
   Autoload  := false
