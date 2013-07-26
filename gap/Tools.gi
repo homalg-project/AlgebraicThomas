@@ -17,7 +17,7 @@
 ####################################
 
 ## 
-HOMALG_IO.Pictograms.QuasiAffineSet := "I-J";
+HOMALG_IO.Pictograms.ConstructibleSet := "cns";
 HOMALG_IO.Pictograms.Closure := "cls";
 HOMALG_IO.Pictograms.CountingPolynomial := "cnt";
 

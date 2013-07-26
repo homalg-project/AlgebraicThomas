@@ -11,9 +11,9 @@
 
 # a new representation for the GAP-category IsScheme
 
-##  <#GAPDoc Label="IsAlgebraicThomasDecompositionSchemeRep">
+##  <#GAPDoc Label="IsAlgebraicThomasDecompositionOfConstructibleSetRep">
 ##  <ManSection>
-##    <Filt Type="Representation" Arg="M" Name="IsAlgebraicThomasDecompositionSchemeRep"/>
+##    <Filt Type="Representation" Arg="M" Name="IsAlgebraicThomasDecompositionOfConstructibleSetRep"/>
 ##    <Returns>true or false</Returns>
 ##    <Description>
 ##      The &GAP; representation of schemes given by an algebraic Thomas decompostion in Maple. <P/>
@@ -22,7 +22,7 @@
 ##  </ManSection>
 ##  <#/GAPDoc>
 ##
-DeclareRepresentation( "IsAlgebraicThomasDecompositionSchemeRep",
+DeclareRepresentation( "IsAlgebraicThomasDecompositionOfConstructibleSetRep",
         IsSchemeRep,
         [  ] );
 
@@ -33,9 +33,9 @@ DeclareRepresentation( "IsAlgebraicThomasDecompositionSchemeRep",
 ####################################
 
 ##
-BindGlobal( "TheTypeAlgebraicThomasDecompositionScheme",
+BindGlobal( "TheTypeAlgebraicThomasDecompositionOfConstructibleSet",
         NewType( TheFamilyOfSchemes,
-                IsAlgebraicThomasDecompositionSchemeRep ) );
+                IsAlgebraicThomasDecompositionOfConstructibleSetRep ) );
 
 ####################################
 #
@@ -53,8 +53,8 @@ InstallValue( ALGEBRAIC_THOMAS,
 
 ##
 InstallMethod( HomalgRing,
-        "for a quasi-affine scheme",
-        [ IsScheme and IsQuasiAffine and IsAlgebraicThomasDecompositionSchemeRep ],
+        "for a constructible set",
+        [ IsScheme and IsAlgebraicThomasDecompositionOfConstructibleSetRep ],
         
   function( X )
     
@@ -64,8 +64,8 @@ end );
 
 ##
 InstallMethod( Closure,
-        "for a quasi-affine scheme",
-        [ IsScheme and IsQuasiAffine and IsAlgebraicThomasDecompositionSchemeRep ],
+        "for a constructible set",
+        [ IsScheme and IsAlgebraicThomasDecompositionOfConstructibleSetRep ],
         
   function( X )
     local R, I;
@@ -84,13 +84,11 @@ end );
 
 ##
 InstallMethod( ADefiningIdealOfComplement,
-        "for a quasi-affine scheme",
-        [ IsScheme and IsQuasiAffine and IsAlgebraicThomasDecompositionSchemeRep ],
+        "for a constructible set",
+        [ IsScheme and IsAlgebraicThomasDecompositionOfConstructibleSetRep ],
         
   function( X )
     local CX, I, V, IpJ, J;
-    
-
     
     CX := Complement( X );
     
@@ -109,6 +107,45 @@ InstallMethod( ADefiningIdealOfComplement,
     J := CertainRows( J, NonZeroRows( J ) );
     
     return LeftSubmodule( J );
+    
+end );
+
+##
+InstallMethod( QuasiAffineDecomposition,
+        "for a constructible set",
+        [ IsScheme and IsAlgebraicThomasDecompositionOfConstructibleSetRep ],
+        
+  function( X )
+    local Y, l;
+    
+    l := [ ];
+    
+    while not IsEmpty( X ) do
+        
+        Y := QuasiAffineSet( DefiningIdeal( Closure( X ) ), ADefiningIdealOfComplement( X ) );
+        
+        SetClosure( Y, Closure( X ) );
+        
+        Add( l, Y );
+        
+        X := Difference( X, Y );
+        
+    od;
+    
+    SetIsQuasiAffineSubscheme( X, Length( l ) <= 1 );
+    
+    return l;
+    
+end );
+
+##
+InstallMethod( IsQuasiAffineSubscheme,
+        "for a constructible set",
+        [ IsScheme and IsAlgebraicThomasDecompositionOfConstructibleSetRep ],
+        
+  function( X )
+    
+    return Length( QuasiAffineDecomposition( X ) ) <= 1;
     
 end );
 
@@ -136,8 +173,8 @@ end );
 
 ##
 InstallMethod( CountingPolynomial,
-        "for a quasi-affine scheme",
-        [ IsScheme and IsQuasiAffine and IsAlgebraicThomasDecompositionSchemeRep ],
+        "for a constructible set",
+        [ IsScheme and IsAlgebraicThomasDecompositionOfConstructibleSetRep ],
         
   function( X )
     local u, coeffs;
@@ -146,7 +183,7 @@ InstallMethod( CountingPolynomial,
     
     if IsEmpty( X ) then
         return 0 * u;
-    elif HasIsAffine( X ) and IsAffine( X ) then
+    elif HasIsAffineSubscheme( X ) and IsAffineSubscheme( X ) then
         return u^Dimension( X );
     fi;
     
@@ -159,9 +196,9 @@ InstallMethod( CountingPolynomial,
 end );
 
 ##
-InstallMethod( IsAffine,
-        "for a quasi-affine scheme",
-        [ IsScheme and IsQuasiAffine and IsAlgebraicThomasDecompositionSchemeRep ],
+InstallMethod( IsAffineSubscheme,
+        "for a constructible set",
+        [ IsScheme and IsAlgebraicThomasDecompositionOfConstructibleSetRep ],
         
   function( X )
     local R, Xcls;
@@ -176,8 +213,8 @@ end );
 
 ##
 InstallMethod( DimensionOfAmbientSpace,
-        "for a quasi-affine scheme",
-        [ IsScheme and IsQuasiAffine and IsAlgebraicThomasDecompositionSchemeRep ],
+        "for a constructible set",
+        [ IsScheme and IsAlgebraicThomasDecompositionOfConstructibleSetRep ],
         
   function( X )
     
@@ -194,8 +231,8 @@ end );
 ##
 InstallMethod( \=,
         "for two quasi-affine schemes",
-        [ IsScheme and IsQuasiAffine and IsAlgebraicThomasDecompositionSchemeRep,
-          IsScheme and IsQuasiAffine and IsAlgebraicThomasDecompositionSchemeRep ],
+        [ IsScheme and IsAlgebraicThomasDecompositionOfConstructibleSetRep,
+          IsScheme and IsAlgebraicThomasDecompositionOfConstructibleSetRep ],
         
   function( X, Y )
     local Z;
@@ -213,8 +250,8 @@ end );
 ##
 InstallMethod( IsSubset,
         "for two quasi-affine schemes",
-        [ IsScheme and IsQuasiAffine and IsAlgebraicThomasDecompositionSchemeRep,
-          IsScheme and IsQuasiAffine and IsAlgebraicThomasDecompositionSchemeRep ],
+        [ IsScheme and IsAlgebraicThomasDecompositionOfConstructibleSetRep,
+          IsScheme and IsAlgebraicThomasDecompositionOfConstructibleSetRep ],
         
   function( X, Y )
     
@@ -271,20 +308,20 @@ InstallMethod( AlgebraicThomasData,
 end );
 
 ##
-InstallGlobalFunction( _QuasiAffineSet,
+InstallGlobalFunction( _ConstructibleSet,
   function( X, R )
     local dim, OX;
     
-    dim := EvalString( homalgSendBlocking( [ "AlgebraicThomas[Dimension](", X, ")" ], "need_output", HOMALG_IO.Pictograms.QuasiAffineSet ) );
+    dim := EvalString( homalgSendBlocking( [ "AlgebraicThomas[Dimension](", X, ")" ], "need_output", HOMALG_IO.Pictograms.ConstructibleSet ) );
     
     X := rec( Thomas_system := X, ring := R );
     
     #OX := Sheafify( R );
     
     ObjectifyWithAttributes(
-            X, TheTypeAlgebraicThomasDecompositionScheme,
-            IsQuasiAffine, true,
+            X, TheTypeAlgebraicThomasDecompositionOfConstructibleSet,
             Dimension, dim,
+            IsConstructibleSet, true,
             IsReduced, true,
             BaseRing, CoefficientsRing( R )
             );
@@ -326,18 +363,19 @@ InstallMethod( QuasiAffineSet,
     var := Indeterminates( R );
     var := Reversed( var );
     
-    X := homalgSendBlocking( [ "AlgebraicThomas[AlgebraicThomasDecompositionMany](AlgebraicThomas[ineqOr](map(op,convert(", i, ",listlist)),map(op,convert(", j, ",listlist ))),[", var, "], use_options=", table, ")" ], "break_lists", HOMALG_IO.Pictograms.QuasiAffineSet );
+    X := homalgSendBlocking( [ "AlgebraicThomas[AlgebraicThomasDecompositionMany](AlgebraicThomas[ineqOr](map(op,convert(", i, ",listlist)),map(op,convert(", j, ",listlist ))),[", var, "], use_options=", table, ")" ], "break_lists", HOMALG_IO.Pictograms.ConstructibleSet );
     
-    X := _QuasiAffineSet( X, R );
+    X := _ConstructibleSet( X, R );
     
     X!.DefiningIdeal := I;
     X!.DefiningIdealOfComplement := J;
     SetADefiningIdealOfComplement( X, J );
+    SetIsQuasiAffineSubscheme( X, true );
     
     if IsOne( I ) or IsZero( J ) then
         SetIsEmpty( X, true );
     elif IsOne( J ) then
-        SetIsAffine( X, true );
+        SetIsAffineSubscheme( X, true );
     fi;
     
     return X;
@@ -357,9 +395,9 @@ end );
 
 ##
 InstallMethod( Intersect2,
-        "for two quasi-affine schemes",
-        [ IsScheme and IsQuasiAffine and IsAlgebraicThomasDecompositionSchemeRep,
-          IsScheme and IsQuasiAffine and IsAlgebraicThomasDecompositionSchemeRep ],
+        "for two constructible sets",
+        [ IsScheme and IsAlgebraicThomasDecompositionOfConstructibleSetRep,
+          IsScheme and IsAlgebraicThomasDecompositionOfConstructibleSetRep ],
         
   function( X, Y )
     local R, Z;
@@ -370,17 +408,24 @@ InstallMethod( Intersect2,
         Error( "the underlying rings are not identical\n" );
     fi;
     
-    Z := homalgSendBlocking( [ "AlgebraicThomas[SolIntersect](", X!.Thomas_system, Y!.Thomas_system, ")" ], HOMALG_IO.Pictograms.QuasiAffineSet );
+    Z := homalgSendBlocking( [ "AlgebraicThomas[SolIntersect](", X!.Thomas_system, Y!.Thomas_system, ")" ], HOMALG_IO.Pictograms.ConstructibleSet );
     
-    return _QuasiAffineSet( Z, R );
+    Z := _ConstructibleSet( Z, R );
+    
+    if HasIsQuasiAffineSubscheme( X ) and IsQuasiAffineSubscheme( X ) and
+       HasIsQuasiAffineSubscheme( Y ) and IsQuasiAffineSubscheme( Y ) then
+        SetIsQuasiAffineSubscheme( Z, true );
+    fi;
+    
+    return Z;
     
 end );
 
 ##
 InstallMethod( Union2,
-        "for two quasi-affine schemes",
-        [ IsScheme and IsQuasiAffine and IsAlgebraicThomasDecompositionSchemeRep,
-          IsScheme and IsQuasiAffine and IsAlgebraicThomasDecompositionSchemeRep ],
+        "for two constructible sets",
+        [ IsScheme and IsAlgebraicThomasDecompositionOfConstructibleSetRep,
+          IsScheme and IsAlgebraicThomasDecompositionOfConstructibleSetRep ],
         
   function( X, Y )
     local R, Z;
@@ -391,17 +436,17 @@ InstallMethod( Union2,
         Error( "the underlying rings are not identical\n" );
     fi;
     
-    Z := homalgSendBlocking( [ "AlgebraicThomas[SolUnion](", X!.Thomas_system, Y!.Thomas_system, ")" ], HOMALG_IO.Pictograms.QuasiAffineSet );
+    Z := homalgSendBlocking( [ "AlgebraicThomas[SolUnion](", X!.Thomas_system, Y!.Thomas_system, ")" ], HOMALG_IO.Pictograms.ConstructibleSet );
     
-    return _QuasiAffineSet( Z, R );
+    return _ConstructibleSet( Z, R );
     
 end );
 
 ##
 InstallMethod( Difference,
-        "for two quasi-affine schemes",
-        [ IsScheme and IsQuasiAffine and IsAlgebraicThomasDecompositionSchemeRep,
-          IsScheme and IsQuasiAffine and IsAlgebraicThomasDecompositionSchemeRep ],
+        "for two constructible sets",
+        [ IsScheme and IsAlgebraicThomasDecompositionOfConstructibleSetRep,
+          IsScheme and IsAlgebraicThomasDecompositionOfConstructibleSetRep ],
         
   function( X, Y )
     local R, Z;
@@ -412,30 +457,30 @@ InstallMethod( Difference,
         Error( "the underlying rings are not identical\n" );
     fi;
     
-    Z := homalgSendBlocking( [ "AlgebraicThomas[SolDifference](", X!.Thomas_system, Y!.Thomas_system, ")" ], HOMALG_IO.Pictograms.QuasiAffineSet );
+    Z := homalgSendBlocking( [ "AlgebraicThomas[SolDifference](", X!.Thomas_system, Y!.Thomas_system, ")" ], HOMALG_IO.Pictograms.ConstructibleSet );
     
-    return _QuasiAffineSet( Z, R );
+    return _ConstructibleSet( Z, R );
     
 end );
 
 ##
 InstallMethod( Complement,
-        "for a quasi-affine scheme",
-        [ IsScheme and IsQuasiAffine and IsAlgebraicThomasDecompositionSchemeRep ],
+        "for a constructible set",
+        [ IsScheme and IsAlgebraicThomasDecompositionOfConstructibleSetRep ],
         
   function( X )
     local Z;
     
-    Z := homalgSendBlocking( [ "AlgebraicThomas[Complement](", X!.Thomas_system, ")" ], HOMALG_IO.Pictograms.QuasiAffineSet );
+    Z := homalgSendBlocking( [ "AlgebraicThomas[Complement](", X!.Thomas_system, ")" ], HOMALG_IO.Pictograms.ConstructibleSet );
     
-    return _QuasiAffineSet( Z, HomalgRing( X ) );
+    return _ConstructibleSet( Z, HomalgRing( X ) );
     
 end );
 
 ##
 InstallMethod( Project,
-        "for a quasi-affine scheme and list of indeterminates",
-        [ IsScheme and IsQuasiAffine and IsAlgebraicThomasDecompositionSchemeRep ],
+        "for a constructible set and list of indeterminates",
+        [ IsScheme and IsAlgebraicThomasDecompositionOfConstructibleSetRep ],
         
   function( X )
     local R, vars, Xc, Y;
@@ -452,11 +497,11 @@ InstallMethod( Project,
     
     ## vars sollen ganz hinten stehen bei HomalgRing( X );
     
-    Xc := homalgSendBlocking( [ "AlgebraicThomas[Comprehensive](", X!.Thomas_system, Length( vars ), ")" ], HOMALG_IO.Pictograms.QuasiAffineSet );
+    Xc := homalgSendBlocking( [ "AlgebraicThomas[Comprehensive](", X!.Thomas_system, Length( vars ), ")" ], HOMALG_IO.Pictograms.ConstructibleSet );
     
-    Y := homalgSendBlocking( [ "map(a->a[1],", Xc, ")" ], HOMALG_IO.Pictograms.QuasiAffineSet );
+    Y := homalgSendBlocking( [ "map(a->a[1],", Xc, ")" ], HOMALG_IO.Pictograms.ConstructibleSet );
     
-    return _QuasiAffineSet( Y, R );
+    return _ConstructibleSet( Y, R );
     
 end );
 
@@ -468,13 +513,13 @@ end );
 
 ##
 InstallMethod( Display,
-        "for a quasi-affine scheme",
-        [ IsScheme and IsQuasiAffine and IsAlgebraicThomasDecompositionSchemeRep ],
+        "for a constructible set",
+        [ IsScheme and IsAlgebraicThomasDecompositionOfConstructibleSetRep ],
         
   function( X )
     
     homalgDisplay( X!.Thomas_system );
     
-    Print( "A quasi-affine variety represented by the above Thomas decomposition\n" );
+    Print( "A constructible set represented by the above Thomas decomposition\n" );
     
 end );

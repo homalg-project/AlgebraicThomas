@@ -27,12 +27,12 @@ u := VariableForCountingPolynomial( );
 
 Assert( 0, ADefiningIdealOfComplement( Project( Y ) ) = L );
 Assert( 0, IsEmpty( W ) );
-Assert( 0, IsAffine( W ) );
+Assert( 0, IsAffineSubscheme( W ) );
 Assert( 0, CountingPolynomial( W ) = 0 * u );
-Assert( 0, not IsAffine( V ) );
+Assert( 0, not IsAffineSubscheme( V ) );
 Assert( 0, not IsEmpty( V ) );
 Assert( 0, CountingPolynomial( V ) = 2*u^2-2 );
-Assert( 0, IsAffine( U ) );
+Assert( 0, IsAffineSubscheme( U ) );
 Assert( 0, not IsEmpty( U ) );
 Assert( 0, CountingPolynomial( U ) = u^2 );
 Assert( 0, IsSubset( U, Intersect( U, V ) ) );

@@ -31,7 +31,7 @@ Subtitle := "Algebraic Thomas decomposition",
 Version := Maximum( [
   "2013.07.06", ## Mohamed's version
 ## this line prevents merge conflicts
-  "2013.06.03", ## Thomas' version
+  "2013.07.10", ## Thomas' version
 ] ),
 ##  Please adjust also the VERSION file in the package directory when
 ##  changing this.
@@ -268,7 +268,7 @@ Dependencies := rec(
   # insensitive, least version denoted with '>=' prepended to version string.
   # without these, the package will not load
   NeededOtherPackages := [
-                      [ "Sheaves", ">= 2013.06.10" ],
+                      [ "Sheaves", ">= 2013.07.10" ],
                       [ "HomalgToCAS", ">= 2013.06.21" ],
                       [ "RingsForHomalg", ">= 2013.07.04" ],
                       [ "GAPDoc", ">= 1.1" ]

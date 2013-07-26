@@ -25,7 +25,7 @@ DeclareGlobalVariable( "ALGEBRAIC_THOMAS" );
 
 DeclareGlobalFunction( "VariableForCountingPolynomial" );
 
-DeclareGlobalFunction( "_QuasiAffineSet" );
+DeclareGlobalFunction( "_ConstructibleSet" );
 
 # basic operations:
 
@@ -77,6 +77,14 @@ DeclareAttributeWithDocumentation( "ADefiningIdealOfComplement",
         IsScheme,
         [ "A defining ideal of the complement in ambient space of <A>X</A>." ],
         "a homalg ideal",
+        "X",
+        [ "Algebraic_Thomas", "Attributes" ]
+        );
+
+DeclareAttributeWithDocumentation( "QuasiAffineDecomposition",
+        IsScheme,
+        [ "A quasi affine decomposition of the constructible set <A>X</A>." ],
+        "a list",
         "X",
         [ "Algebraic_Thomas", "Attributes" ]
         );
