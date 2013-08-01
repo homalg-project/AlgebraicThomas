@@ -518,7 +518,7 @@ InstallMethod( Display,
         
   function( X )
     
-    homalgDisplay( X!.Thomas_system );
+    homalgDisplay( [ "AlgebraicThomas[printSystem](", X!.Thomas_system , ")" ] );
     
     Print( "A constructible set represented by the above Thomas decomposition\n" );
     
