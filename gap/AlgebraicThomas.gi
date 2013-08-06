@@ -604,6 +604,42 @@ InstallMethod( Difference,
 end );
 
 ##
+InstallMethod( Difference,
+        "for a constructible set and an affine scheme",
+        [ IsScheme and IsAlgebraicThomasDecompositionOfConstructibleSetRep,
+          IsScheme and IsAffineSchemeRep ],
+        
+  function( X, Y )
+    
+    return Difference( X, QuasiAffineSet( Y ) );
+  
+end );
+
+##
+InstallMethod( Difference,
+        "for an affine scheme and a constructible set",
+        [ IsScheme and IsAffineSchemeRep,
+          IsScheme and IsAlgebraicThomasDecompositionOfConstructibleSetRep ],
+        
+  function( X, Y )
+    
+    return Difference( QuasiAffineSet( X ), Y );
+  
+end );
+
+##
+InstallMethod( Difference,
+        "for two affine schemes",
+        [ IsScheme and IsAffineSchemeRep,
+          IsScheme and IsAffineSchemeRep ],
+        
+  function( X, Y )
+    
+    return QuasiAffineSet( X, Y );
+  
+end );
+
+##
 InstallMethod( ComplementAttr,
         "for a constructible set",
         [ IsScheme and IsAlgebraicThomasDecompositionOfConstructibleSetRep ],
