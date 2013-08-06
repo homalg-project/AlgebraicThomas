@@ -622,6 +622,17 @@ InstallMethod( ComplementAttr,
 end );
 
 ##
+InstallMethod( ComplementAttr,
+        "for an affine scheme",
+        [ IsScheme and IsAffineSchemeRep ],
+        
+  function( X )
+    
+    return Complement( QuasiAffineSet( X ) );
+    
+end );
+
+##
 InstallMethod( Project,
         "for a constructible set and list of indeterminates",
         [ IsScheme and IsAlgebraicThomasDecompositionOfConstructibleSetRep ],
