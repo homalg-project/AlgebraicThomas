@@ -56,6 +56,33 @@ DeclareAttributeWithDocumentation( "QuasiAffineSet",
         [ "Algebraic_Thomas", "Constructors" ]
         );
 
+DeclareOperationWithDocumentation( "QuasiAffineSet",
+        [ IsScheme, IsHomalgModule ],
+        [ "Initializes an algebraic Thomas system representing the quasi-affine set",
+          "<A>X</A><M> - V(</M><A>J</A><M>)</M>." ],
+        "a homalg pointer",
+        "X, J",
+        [ "Algebraic_Thomas", "Constructors" ]
+        );
+
+DeclareOperationWithDocumentation( "QuasiAffineSet",
+        [ IsScheme, IsScheme ],
+        [ "Initializes an algebraic Thomas system representing the quasi-affine set",
+          "<A>X</A><M> - </M><A>Y</A>." ],
+        "a homalg pointer",
+        "X, Y",
+        [ "Algebraic_Thomas", "Constructors" ]
+        );
+
+DeclareAttributeWithDocumentation( "QuasiAffineSet",
+        IsScheme,
+        [ "Initializes an algebraic Thomas system representing the affine set",
+          "<A>X</A>." ],
+        "a homalg pointer",
+        "X",
+        [ "Algebraic_Thomas", "Constructors" ]
+        );
+
 DeclareOperationWithDocumentation( "Project",
         [ IsScheme ],
         [ "The projection of a quasi-affine scheme <A>X</A>",

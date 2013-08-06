@@ -384,12 +384,80 @@ end );
 
 ##
 InstallMethod( QuasiAffineSet,
-        "for two homalg ideals",
+        "for a homalg ideal",
         [ IsFinitelyPresentedSubmoduleRep and ConstructedAsAnIdeal ],
         
   function( I )
     
     return QuasiAffineSet( I, I^0 );
+    
+end );
+
+##
+InstallMethod( QuasiAffineSet,
+        "for an affine scheme and a homalg ideal",
+        [ IsAffineSchemeRep and IsAffine,
+          IsFinitelyPresentedSubmoduleRep and ConstructedAsAnIdeal ],
+        
+  function( X, J )
+    local R, I;
+    
+    R := HomalgRing( X );
+    
+    if HasIsFreePolynomialRing( R ) and IsFreePolynomialRing( R ) then
+        I := ZeroLeftSubmodule( R );
+    elif IsHomalgResidueClassRingRep( R ) then
+        I := DefiningIdeal( R );
+    else
+        TryNextMethod( );
+    fi;
+    
+    return QuasiAffineSet( I, J );
+    
+end );
+
+##
+InstallMethod( QuasiAffineSet,
+        "for an affine scheme",
+        [ IsAffineSchemeRep and IsAffine ],
+        
+  function( X )
+    local R, V;
+    
+    R := HomalgRing( X );
+    
+    if IsHomalgResidueClassRingRep( R ) then
+        R := AmbientRing( R );
+    fi;
+    
+    V := QuasiAffineSet( X, LeftSubmodule( R ) );
+    
+    SetClosure( V, X );
+    
+    return V;
+    
+end );
+
+##
+InstallMethod( QuasiAffineSet,
+        "for two affine schemes",
+        [ IsAffineSchemeRep and IsAffine,
+          IsAffineSchemeRep and IsAffine ],
+        
+  function( X, Y )
+    local R, J;
+    
+    R := HomalgRing( Y );
+    
+    if HasIsFreePolynomialRing( R ) and IsFreePolynomialRing( R ) then
+        J := ZeroLeftSubmodule( R );
+    elif IsHomalgResidueClassRingRep( R ) then
+        J := DefiningIdeal( R );
+    else
+        TryNextMethod( );
+    fi;
+    
+    return QuasiAffineSet( X, J );
     
 end );
 
