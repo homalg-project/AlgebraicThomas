@@ -189,8 +189,6 @@ InstallMethod( CountingPolynomial,
     
     if IsEmpty( X ) then
         return 0 * u;
-    elif HasIsAffineSubscheme( X ) and IsAffineSubscheme( X ) then
-        return u^Dimension( X );
     fi;
     
     coeffs := homalgSendBlocking( [ "(p->map[3](coeff,p,u,[$0..degree(p)]))(AlgebraicThomas[countingPolynomials](", X!.Thomas_system, ",sym='", String( u ), "')[2])" ], "need_output", HOMALG_IO.Pictograms.CountingPolynomial );
