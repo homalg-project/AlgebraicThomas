@@ -513,6 +513,30 @@ InstallMethod( Intersect2,
 end );
 
 ##
+InstallMethod( Intersect2,
+        "for a constructible set and an affine scheme",
+        [ IsScheme and IsAlgebraicThomasDecompositionOfConstructibleSetRep,
+          IsScheme and IsAffineSchemeRep ],
+        
+  function( X, Y )
+    
+    return Intersect2( X, QuasiAffineSet( Y ) );
+  
+end );
+
+##
+InstallMethod( Intersect2,
+        "for an affine scheme and a constructible set",
+        [ IsScheme and IsAffineSchemeRep,
+          IsScheme and IsAlgebraicThomasDecompositionOfConstructibleSetRep ],
+        
+  function( X, Y )
+    
+    return Intersect2( QuasiAffineSet( X ), Y );
+  
+end );
+
+##
 InstallMethod( Union2,
         "for two constructible sets",
         [ IsScheme and IsAlgebraicThomasDecompositionOfConstructibleSetRep,
@@ -532,6 +556,31 @@ InstallMethod( Union2,
     return _ConstructibleSet( Z, R );
     
 end );
+
+##
+InstallMethod( Union2,
+        "for a constructible set and an affine scheme",
+        [ IsScheme and IsAlgebraicThomasDecompositionOfConstructibleSetRep,
+          IsScheme and IsAffineSchemeRep ],
+        
+  function( X, Y )
+    
+    return Union2( X, QuasiAffineSet( Y ) );
+  
+end );
+
+##
+InstallMethod( Union2,
+        "for an affine scheme and a constructible set",
+        [ IsScheme and IsAffineSchemeRep,
+          IsScheme and IsAlgebraicThomasDecompositionOfConstructibleSetRep ],
+        
+  function( X, Y )
+    
+    return Union2( QuasiAffineSet( X ), Y );
+  
+end );
+
 
 ##
 InstallMethod( Difference,
