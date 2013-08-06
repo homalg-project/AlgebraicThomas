@@ -670,7 +670,7 @@ end );
 
 ##
 InstallMethod( Project,
-        "for a constructible set and list of indeterminates",
+        "for a constructible set over a filtered ring",
         [ IsScheme and IsAlgebraicThomasDecompositionOfConstructibleSetRep ],
         
   function( X )
