@@ -16,7 +16,7 @@ test:	doc
 	gap maketest.g
 
 archive: test
-	(mkdir -p ../tar; cd ..; tar czvf tar/AlgebraicThomas.tar.gz --exclude ".DS_Store" --exclude "*~" AlgebraicThomas/doc/*.* AlgebraicThomas/doc/clean AlgebraicThomas/gap/*.{gi,gd} AlgebraicThomas/{CHANGES,PackageInfo.g,README,VERSION,init.g,read.g,makedoc.g,makefile,maketest.g,ListOfDocFiles.g,createautodoc.g} AlgebraicThomas/examples/*.g)
+	(mkdir -p ../tar; cd ..; tar czvf tar/AlgebraicThomas.tar.gz --exclude ".DS_Store" --exclude "*~" AlgebraicThomas/doc/*.* AlgebraicThomas/doc/clean AlgebraicThomas/gap/*.{gi,gd} AlgebraicThomas/{PackageInfo.g,README,VERSION,init.g,read.g,makedoc.g,makefile,maketest.g,ListOfDocFiles.g,createautodoc.g} AlgebraicThomas/examples/*.g)
 
 WEBPOS=public_html
 WEBPOS_FINAL=~/public_html/AlgebraicThomas
