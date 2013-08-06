@@ -366,6 +366,10 @@ InstallMethod( QuasiAffineSet,
     
     R := HomalgRing( I );
     
+    if not IsIdenticalObj( R, HomalgRing( J ) ) then
+        Error( "the underlying rings are not identical\n" );
+    fi;
+    
     table := AlgebraicThomasData( R );
     
     i := MatrixOfSubobjectGenerators( I );
