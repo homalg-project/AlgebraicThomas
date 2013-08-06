@@ -183,7 +183,7 @@ InstallMethod( CountingPolynomial,
         [ IsScheme and IsAlgebraicThomasDecompositionOfConstructibleSetRep ],
         
   function( X )
-    local u, coeffs;
+    local u, coeffs, p;
     
     u := VariableForCountingPolynomial( );
     
@@ -195,7 +195,11 @@ InstallMethod( CountingPolynomial,
     
     coeffs := StringToIntList( coeffs );
     
-    return Sum( [ 1 .. Length( coeffs ) ], i -> coeffs[i] * u^(i - 1) );
+    p := Sum( [ 1 .. Length( coeffs ) ], i -> coeffs[i] * u^(i - 1) );
+    
+    SetIsAffineSpace( X, p = u^DimensionOfAmbientSpace( X ) );
+    
+    return p;
     
 end );
 
