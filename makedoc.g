@@ -18,6 +18,8 @@ PrintTo( "VERSION", PackageInfo( "AlgebraicThomas" )[1].Version );
 
 MakeGAPDocDoc( "doc", "AlgebraicThomas", list, "AlgebraicThomas" );
 
-GAPDocManualLab("AlgebraicThomas");
+CopyHTMLStyleFiles( "doc" );
+
+GAPDocManualLab( "AlgebraicThomas" );
 
 QUIT;
