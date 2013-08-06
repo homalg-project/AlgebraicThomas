@@ -16,7 +16,7 @@ Read( "ListOfDocFiles.g" );
 
 PrintTo( "VERSION", PackageInfo( "AlgebraicThomas" )[1].Version );
 
-MakeGAPDocDoc( "doc", "AlgebraicThomas", list, "AlgebraicThomas" );
+MakeGAPDocDoc( "doc", "AlgebraicThomas", list, "AlgebraicThomas", "MathJax" );
 
 CopyHTMLStyleFiles( "doc" );
 
