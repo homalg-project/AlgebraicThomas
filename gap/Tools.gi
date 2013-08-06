@@ -20,6 +20,7 @@
 HOMALG_IO.Pictograms.ConstructibleSet := "cns";
 HOMALG_IO.Pictograms.Closure := "cls";
 HOMALG_IO.Pictograms.CountingPolynomial := "cnt";
+HOMALG_IO.Pictograms.EquidimensionalQuasiAffineDecomposition := "eqa";
 
 
 ####################################

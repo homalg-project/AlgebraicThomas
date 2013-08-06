@@ -14,3 +14,5 @@ ReadPackage( "AlgebraicThomas", "gap/AlgebraicThomas.gi" );
 ReadPackage( "AlgebraicThomas", "gap/Tools.gi" );
 
 ReadPackage( "AlgebraicThomas", "gap/MapleTools.gi" );
+
+ReadPackage( "AlgebraicThomas", "gap/EquidimensionalQuasiAffineDecomposition.gi" );
