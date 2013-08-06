@@ -321,7 +321,7 @@ InstallGlobalFunction( _ConstructibleSet,
     ObjectifyWithAttributes(
             X, TheTypeAlgebraicThomasDecompositionOfConstructibleSet,
             Dimension, dim,
-            IsConstructibleSet, true,
+            IsConstructibleSubsetOfAffineSpace, true,
             IsReduced, true,
             BaseRing, CoefficientsRing( R )
             );

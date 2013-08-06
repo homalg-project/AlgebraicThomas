@@ -266,7 +266,7 @@ Dependencies := rec(
   # insensitive, least version denoted with '>=' prepended to version string.
   # without these, the package will not load
   NeededOtherPackages := [
-                      [ "Sheaves", ">= 2013.07.10" ],
+                      [ "Sheaves", ">= 2013.08.06" ],
                       [ "HomalgToCAS", ">= 2013.06.21" ],
                       [ "RingsForHomalg", ">= 2013.07.04" ],
                       [ "GAPDoc", ">= 1.1" ]
