@@ -68,7 +68,7 @@ InstallMethod( Closure,
         [ IsScheme and IsAlgebraicThomasDecompositionOfConstructibleSetRep ],
         
   function( X )
-    local R, I;
+    local R, I, V;
     
     R := HomalgRing( X );
     
@@ -78,7 +78,13 @@ InstallMethod( Closure,
     
     SetNrColumns( I, 1 );
     
-    return R / LeftSubmodule( I );
+    V := Spec( R / LeftSubmodule( I ) );
+    
+    if HasIsAffineSubscheme( X ) and IsAffineSubscheme( X ) then
+        SetQuasiAffineSet( V, X );
+    fi;
+    
+    return V;
     
 end );
 
@@ -92,13 +98,13 @@ InstallMethod( ADefiningIdealOfComplement,
     
     CX := Complement( X );
     
-    I := DefiningIdeal( Closure( X ) );
+    I := DefiningIdeal( HomalgRing( Closure( X ) ) );
     
     V := QuasiAffineSet( I );
     
     IpJ := Intersect( CX, V );
     
-    IpJ := DefiningIdeal( Closure( IpJ ) );
+    IpJ := DefiningIdeal( HomalgRing( Closure( IpJ ) ) );
     
     J := MatrixOfSubobjectGenerators( IpJ );
     
@@ -122,7 +128,7 @@ InstallMethod( QuasiAffineDecomposition,
     
     while not IsEmpty( X ) do
         
-        Y := QuasiAffineSet( DefiningIdeal( Closure( X ) ), ADefiningIdealOfComplement( X ) );
+        Y := QuasiAffineSet( Closure( X ), ADefiningIdealOfComplement( X ) );
         
         SetClosure( Y, Closure( X ) );
         
@@ -205,7 +211,7 @@ InstallMethod( IsAffineSubscheme,
     
     R := HomalgRing( X );
     
-    Xcls := QuasiAffineSet( DefiningIdeal( Closure( X ) ), LeftSubmodule( R ) );
+    Xcls := QuasiAffineSet( Closure( X ) );
     
     return CountingPolynomial( X ) = CountingPolynomial( Xcls );
     
