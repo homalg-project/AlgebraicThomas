@@ -298,7 +298,7 @@ InstallMethod( AlgebraicThomasData,
     
     if not IsFieldForHomalg( r ) then
         Error( "CoefficientsRing is not a field\n" );
-    elif not IsFreePolynomialRing( R ) then
+    elif not ( HasIsFreePolynomialRing( R ) and IsFreePolynomialRing( R ) ) then
         Error( "ring is not a polynomial ring\n" );
     fi;
     
