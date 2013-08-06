@@ -363,7 +363,7 @@ InstallMethod( QuasiAffineSet,
     var := Indeterminates( R );
     var := Reversed( var );
     
-    X := homalgSendBlocking( [ "AlgebraicThomas[AlgebraicThomasDecompositionMany](AlgebraicThomas[ineqOr](map(op,convert(", i, ",listlist)),map(op,convert(", j, ",listlist ))),[", var, "], use_options=", table, ")" ], "break_lists", HOMALG_IO.Pictograms.ConstructibleSet );
+    X := homalgSendBlocking( [ "AlgebraicThomas[AlgebraicThomasDecompositionMany](AlgebraicThomas[ineqOr](map(op,convert(", i, ",listlist)),map(op,convert(", j, ",listlist))),[", var, "], use_options=", table, ")" ], "break_lists", HOMALG_IO.Pictograms.ConstructibleSet );
     
     X := _ConstructibleSet( X, R );
     
