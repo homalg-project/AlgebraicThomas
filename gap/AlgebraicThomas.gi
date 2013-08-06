@@ -604,16 +604,20 @@ InstallMethod( Difference,
 end );
 
 ##
-InstallMethod( Complement,
+InstallMethod( ComplementAttr,
         "for a constructible set",
         [ IsScheme and IsAlgebraicThomasDecompositionOfConstructibleSetRep ],
         
   function( X )
-    local Z;
+    local Z, C;
     
     Z := homalgSendBlocking( [ "AlgebraicThomas[Complement](", X!.Thomas_system, ")" ], HOMALG_IO.Pictograms.ConstructibleSet );
     
-    return _ConstructibleSet( Z, HomalgRing( X ) );
+    C := _ConstructibleSet( Z, HomalgRing( X ) );
+    
+    SetComplementAttr( C, X );
+    
+    return C;
     
 end );
 
