@@ -696,6 +696,17 @@ InstallMethod( Project,
     
 end );
 
+##
+InstallMethod( Project,
+        "for an affine scheme over a filtered ring",
+        [ IsScheme and IsAffineSchemeRep ],
+        
+  function( X )
+    
+    return Project( QuasiAffineSet( X ) );
+    
+end );
+
 ####################################
 #
 # View, Print, and Display methods:
