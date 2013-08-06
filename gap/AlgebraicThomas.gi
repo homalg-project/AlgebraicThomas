@@ -204,6 +204,17 @@ InstallMethod( CountingPolynomial,
 end );
 
 ##
+InstallMethod( CountingPolynomial,
+        "for an affine scheme",
+        [ IsScheme and IsAffineSchemeRep ],
+        
+  function( X )
+    
+    return CountingPolynomial( QuasiAffineSet( X ) );
+    
+end );
+
+##
 InstallMethod( IsAffineSubscheme,
         "for a constructible set",
         [ IsScheme and IsAlgebraicThomasDecompositionOfConstructibleSetRep ],
