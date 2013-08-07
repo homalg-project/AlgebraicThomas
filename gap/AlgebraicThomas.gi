@@ -144,6 +144,17 @@ InstallMethod( QuasiAffineDecomposition,
     
 end );
 
+InstallMethod( QuasiAffineDecomposition,
+        "for a quasi-affine scheme",
+        [ IsScheme and IsQuasiAffineSubscheme ],
+        
+  function( X )
+    
+    return [ X ];
+    
+end );
+
+
 ##
 InstallMethod( IsQuasiAffineSubscheme,
         "for a constructible set",
