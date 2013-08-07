@@ -249,9 +249,9 @@ end );
 
 ##
 InstallMethod( \=,
-        "for two quasi-affine schemes",
-        [ IsScheme and IsAlgebraicThomasDecompositionOfConstructibleSetRep,
-          IsScheme and IsAlgebraicThomasDecompositionOfConstructibleSetRep ],
+        "for two constructible sets",
+        [ IsScheme and IsConstructibleSubsetOfAffineSpace,
+          IsScheme and IsConstructibleSubsetOfAffineSpace ],
         
   function( X, Y )
     local Z;
@@ -268,9 +268,9 @@ end );
 
 ##
 InstallMethod( IsSubset,
-        "for two quasi-affine schemes",
-        [ IsScheme and IsAlgebraicThomasDecompositionOfConstructibleSetRep,
-          IsScheme and IsAlgebraicThomasDecompositionOfConstructibleSetRep ],
+        "for two constructible sets",
+        [ IsScheme and IsConstructibleSubsetOfAffineSpace,
+          IsScheme and IsConstructibleSubsetOfAffineSpace ],
         
   function( X, Y )
     
