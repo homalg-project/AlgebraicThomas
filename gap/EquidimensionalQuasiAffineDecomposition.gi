@@ -42,7 +42,7 @@ InstallMethod( EquidimensionalQuasiAffineDecomposition,
         
         Y := _ConstructibleSet( homalgSendBlocking( [ X!.Thomas_system, "[", L, "]" ], HOMALG_IO.Pictograms.EquidimensionalQuasiAffineDecomposition ), HomalgRing( X ) );
         
-        Y := QuasiAffineSet( DefiningIdeal( Closure( Y ) ), ADefiningIdealOfComplement( Y ) );
+        Y := QuasiAffineSet( Closure( Y ), ADefiningIdealOfComplement( Y ) );
         
         Add(l, Y);
         
