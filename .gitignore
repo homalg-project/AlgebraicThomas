@@ -35,3 +35,4 @@ doc/AutoDocMainFile.xml
 gap/AutoDocEntries.g
 doc/Chapter*.xml
 AlgebraicThomas
+*.swp
