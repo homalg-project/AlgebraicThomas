@@ -496,6 +496,97 @@ InstallMethod( QuasiAffineSet,
 end );
 
 ##
+InstallMethod( ConstructibleSet,
+        "for a homalg ideal and an empty list",
+        [ IsFinitelyPresentedSubmoduleRep and ConstructedAsAnIdeal,
+          IsList and IsEmpty ],
+        
+  function( I, J )
+    
+    return QuasiAffineSet( I );
+    
+end );
+
+##
+InstallMethod( ConstructibleSet,
+        "for an affine scheme and an empty list",
+        [ IsAffineSchemeRep and IsAffine,
+          IsList and IsEmpty ],
+        
+  function( X, J )
+    
+    return QuasiAffineSet( X );
+    
+end );
+
+##
+InstallMethod( ConstructibleSet,
+        "for a homalg ideal and a list of polynomials",
+        [ IsFinitelyPresentedSubmoduleRep and ConstructedAsAnIdeal,
+          IsList ],
+        
+  function( I, J )
+    local R, table, i, var, X;
+    
+    if IsOne( I ) or IsZero( J ) then
+        ## EmptyScheme
+    fi;
+    
+    R := HomalgRing( I );
+    
+    if ForAny( J, j -> not IsIdenticalObj( R, HomalgRing( j ) ) ) then
+        Error( "the underlying rings are not identical\n" );
+    fi;
+    
+    table := AlgebraicThomasData( R );
+    
+    i := MatrixOfSubobjectGenerators( I );
+    
+    if IsZero( i ) then
+        i := HomalgZeroMatrix( 1, 1, R );
+    fi;
+    
+    var := Indeterminates( R );
+    var := Reversed( var );
+    
+    X := homalgSendBlocking( [ "AlgebraicThomas[AlgebraicThomasDecomposition]([map(op,convert(", i, ",listlist)),[", J, "]],[", var, "],use_options=", table, ")" ], "break_lists", HOMALG_IO.Pictograms.ConstructibleSet );
+    
+    X := _ConstructibleSet( X, R );
+    
+    X!.DefiningIdeal := I;
+    
+    if IsOne( I ) or IsZero( J ) then
+        SetIsEmpty( X, true );
+    fi;
+    
+    return X;
+    
+end );
+
+##
+InstallMethod( ConstructibleSet,
+        "for an affine scheme and a list of polynomials",
+        [ IsAffineSchemeRep and IsAffine,
+          IsList ],
+        
+  function( X, J )
+    local R, I;
+    
+    R := HomalgRing( X );
+    
+    if HasIsFreePolynomialRing( R ) and IsFreePolynomialRing( R ) then
+        I := ZeroLeftSubmodule( R );
+    elif IsHomalgResidueClassRingRep( R ) then
+        I := DefiningIdeal( R );
+    else
+        TryNextMethod( );
+    fi;
+    
+    return QuasiAffineSet( I, J );
+    
+end );
+
+##
 InstallMethod( Intersect2,
         "for two constructible sets",
         [ IsScheme and IsAlgebraicThomasDecompositionOfConstructibleSetRep,
