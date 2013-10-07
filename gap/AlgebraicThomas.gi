@@ -551,15 +551,7 @@ InstallMethod( ConstructibleSet,
     
     X := homalgSendBlocking( [ "AlgebraicThomas[AlgebraicThomasDecomposition]([map(op,convert(", i, ",listlist)),[", J, "]],[", var, "],use_options=", table, ")" ], "break_lists", HOMALG_IO.Pictograms.ConstructibleSet );
     
-    X := _ConstructibleSet( X, R );
-    
-    X!.DefiningIdeal := I;
-    
-    if IsOne( I ) or IsZero( J ) then
-        SetIsEmpty( X, true );
-    fi;
-    
-    return X;
+    return _ConstructibleSet( X, R );
     
 end );
 
