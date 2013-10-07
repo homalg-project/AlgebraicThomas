@@ -574,7 +574,7 @@ InstallMethod( ConstructibleSet,
         TryNextMethod( );
     fi;
     
-    return QuasiAffineSet( I, J );
+    return ConstructibleSet( I, J );
     
 end );
 
