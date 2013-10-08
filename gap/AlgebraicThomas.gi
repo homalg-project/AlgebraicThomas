@@ -578,6 +578,77 @@ InstallMethod( ConstructibleSet,
     
 end );
 
+InstallMethod( ConstructibleSet,
+        "for a list of equations and a list of inequations",
+        [ IsList, IsList ],
+        
+  function( G, U )
+    local R, table, var, X;
+    
+    if not ForAll( Concatenation( G, U ), IsHomalgRingElement ) then
+        TryNextMethod();
+    fi;
+    
+    if not IsEmpty( G ) then
+        R := HomalgRing( G[1] );
+    elif not IsEmpty( U ) then
+        R := HomalgRing( U[1] );
+    else
+        Error( "cannot determine underlying ring from empty input\n" );
+    fi;
+    
+    if not ( HasIsFreePolynomialRing( R ) and IsFreePolynomialRing( R ) ) then
+        Error( "ring is not a polynomial ring" );
+    fi;
+    
+    if not ForAll( Concatenation( G, U ), p -> IsIdenticalObj( HomalgRing( p ), R ) ) then
+        Error( "the underlying rings are not identical" );
+    fi;
+    
+    table := AlgebraicThomasData( R );
+    
+    var := Indeterminates( R );
+    var := Reversed( var );
+    
+    X := homalgSendBlocking( [ "AlgebraicThomas[AlgebraicThomasDecomposition]([[", G, "], [", U, "]],[", var, "],use_options=", table, ")" ], "break_lists", HOMALG_IO.Pictograms.ConstructibleSet );
+    
+    return _ConstructibleSet( X, R );
+    
+end );
+
+InstallMethod( ConstructibleSet,
+        "for a constructible set, a list of equations and a list of inequations",
+        [ IsAlgebraicThomasDecompositionOfConstructibleSetRep, IsList, IsList ],
+        
+  function( X, G, U )
+    local R;
+    
+    if not ForAll( Concatenation( G, U ), IsHomalgRingElement ) then
+        TryNextMethod();
+    fi;
+
+    R := HomalgRing( X );
+    
+    if not ForAll( Concatenation( G, U ), p -> IsIdenticalObj( HomalgRing( p ), R ) ) then
+        Error( "the underlying rings are not identical" );
+    fi;
+    
+    X := homalgSendBlocking( [ "AlgebraicThomas[SolIntersect](", X!.Thomas_system, ", [[[", G, "], [", U, "]]])" ], "break_lists", HOMALG_IO.Pictograms.ConstructibleSet );
+    
+    return _ConstructibleSet( X, R );
+    
+end );
+
+InstallMethod( ConstructibleSet,
+        "for an affine set, a list of equations and a list of inequations",
+        [ IsAffineSchemeRep and IsAffine, IsList, IsList ],
+        
+  function( X, G, U )
+    
+    return ConstructibleSet( QuasiAffineSet( X ), G, U );
+    
+end );
+
 ##
 InstallMethod( Intersect2,
         "for two constructible sets",

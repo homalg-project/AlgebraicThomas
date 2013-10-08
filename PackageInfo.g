@@ -31,7 +31,7 @@ Subtitle := "Constructible sets via algebraic Thomas decomposition",
 Version := Maximum( [
   "2013.07.06", ## Mohamed's version
 ## this line prevents merge conflicts
-  "2013.08.06", ## Thomas' version
+  "2013.10.08", ## Thomas' version
 ## this line prevents merge conflicts
   "2013.09.03", ## Martin's version
 ] ),

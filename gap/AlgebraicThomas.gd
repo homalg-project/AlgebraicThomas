@@ -103,6 +103,25 @@ DeclareOperationWithDocumentation( "ConstructibleSet",
         [ "Algebraic_Thomas", "Constructors" ]
         );
 
+DeclareOperationWithDocumentation( "ConstructibleSet",
+        [ IsList, IsList ],
+        [ "Initializes an algebraic Thomas system representing the constructible set",
+          "defined by the equations in <A>G</A> and inequations in <A>U</A>." ],
+        "a homalg pointer",
+        "G, U",
+        [ "Algebraic_Thomas", "Constructors" ]
+        );
+
+DeclareOperationWithDocumentation( "ConstructibleSet",
+        [ IsScheme, IsList, IsList ],
+        [ "Initializes an algebraic Thomas system representing the intersection of the",
+          "constructible set <A>X</A> with <M>R</M>, where <M>R</M> is the constructible",
+          "set defined by the equations in <A>G</A> and inequations in <A>U</A>." ],
+        "a homalg pointer",
+        "X, G, U",
+        [ "Algebraic_Thomas", "Constructors" ]
+        );
+
 DeclareOperationWithDocumentation( "Project",
         [ IsScheme ],
         [ "The projection of a quasi-affine scheme <A>X</A>",
