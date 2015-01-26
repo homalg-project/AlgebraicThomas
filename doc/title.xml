@@ -5,7 +5,7 @@
   title.xml            AlgebraicThomas package documentation                Thomas Bächler
                                                                            Mohamed Barakat
 
-         Copyright (C)      2013, Thomas Bächler, RWTH-Aachen University
+         Copyright (C)      2013-2014, Thomas Bächler, RWTH-Aachen University
                                   Mohamed Barakat, University of Kaiserslautern
 -->
 <TitlePage>
@@ -39,10 +39,10 @@
     <Email>barakat@mathematik.uni-kl.de</Email>
     <Homepage>http://www.mathematik.uni-kl.de/&tilde;barakat/</Homepage>
   </Author>
-  <Date>July 2013</Date>
+  <Date>April 2014</Date>
   
   <Copyright>
-    &copyright; 2013 by Thomas Bächler and Mohamed Barakat<P/>
+    &copyright; 2014 by Thomas Bächler and Mohamed Barakat<P/>
     
     This package may be distributed under the terms and conditions of the
     GNU Public License Version 2.

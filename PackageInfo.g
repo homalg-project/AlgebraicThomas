@@ -29,7 +29,7 @@ Subtitle := "Constructible sets via algebraic Thomas decomposition",
 ##  of valid version numbers. For an automatic package distribution update
 ##  you must provide a new version number even after small changes.
 Version := Maximum( [
-  "2013.07.06", ## Mohamed's version
+  "2014.04.14", ## Mohamed's version
 ## this line prevents merge conflicts
   "2013.10.08", ## Thomas' version
 ## this line prevents merge conflicts
