@@ -15,10 +15,12 @@
 #
 ####################################
 
-DeclareAttributeWithDocumentation( "EquidimensionalQuasiAffineDecomposition",
-        IsScheme,
-        [ "The equidimensional quasi-affine decomposition of a constructible set <A>X</A>." ],
-        "a homalg pointer",
-        "X",
-        [ "Algebraic_Thomas" ]
-        );
+#! @Chapter Algebraic Thomas
+#! @Section Global functions and operations
+
+#! @Description
+#!  The equidimensional quasi-affine decomposition of a constructible set <A>X</A>.
+#! @Returns a homalg pointer
+#! @Arguments X
+DeclareAttribute( "EquidimensionalQuasiAffineDecomposition",
+                  IsScheme );

@@ -4,22 +4,8 @@
 ##  Call this with GAP.
 ##
 
-LoadPackage( "GAPDoc" );
-LoadPackage( "Modules" );
+LoadPackage( "AutoDoc" );
 
-SetGapDocLaTeXOptions( "utf8" );
-
-bib := ParseBibFiles( "doc/AlgebraicThomas.bib" );
-WriteBibXMLextFile( "doc/AlgebraicThomasBib.xml", bib );
-
-Read( "ListOfDocFiles.g" );
-
-PrintTo( "VERSION", PackageInfo( "AlgebraicThomas" )[1].Version );
-
-MakeGAPDocDoc( "doc", "AlgebraicThomas", list, "AlgebraicThomas", "MathJax" );
-
-CopyHTMLStyleFiles( "doc" );
-
-GAPDocManualLab( "AlgebraicThomas" );
+AutoDoc( "AlgebraicThomas", rec( scaffold := true, autodoc := true ) );
 
 QUIT;
