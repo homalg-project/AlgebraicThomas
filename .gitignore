@@ -36,3 +36,4 @@ gap/AutoDocEntries.g
 doc/Chapter*.xml
 AlgebraicThomas
 *.swp
+doc/_*

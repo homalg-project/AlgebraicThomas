@@ -29,128 +29,128 @@ DeclareGlobalFunction( "_ConstructibleSet" );
 
 # basic operations:
 
-DeclareOperationWithDocumentation( "AlgebraicThomasData",
-        [ IsHomalgRing ],
-        [ "Initializes AlgebraicThomas in Maple according to <C>CoefficientsRing</C>(<A>R</A>)",
-          "and returns a pointer to the options table." ],
-        "a homalg pointer",
-        "R",
-        [ "Algebraic_Thomas", "Constructors" ]
-        );
+#! @Description
+#!  Initializes AlgebraicThomas in Maple according to <C>CoefficientsRing</C>(<A>R</A>)
+#!  and returns a pointer to the options table.
+#! @Returns a homalg pointer
+#! @Arguments R
+#! @ChapterInfo Algebraic Thomas, Constructors
+DeclareOperation( "AlgebraicThomasData",
+                  [ IsHomalgRing ] );
 
-DeclareOperationWithDocumentation( "QuasiAffineSet",
-        [ IsHomalgModule, IsHomalgModule ],
-        [ "Initializes an algebraic Thomas system representing the quasi-affine set",
-          "<M>V(</M><A>I</A><M>) - V(</M><A>J</A><M>)</M>." ],
-        "a homalg pointer",
-        "I, J",
-        [ "Algebraic_Thomas", "Constructors" ]
-        );
+#! @Description
+#!  Initializes an algebraic Thomas system representing the quasi-affine set
+#!  <M>V(</M><A>I</A><M>) - V(</M><A>J</A><M>)</M>.
+#! @Returns a homalg pointer
+#! @Arguments I, J
+#! @ChapterInfo Algebraic Thomas, Constructors
+DeclareOperation( "QuasiAffineSet",
+                  [ IsHomalgModule, IsHomalgModule ] );
 
-DeclareAttributeWithDocumentation( "QuasiAffineSet",
-        IsHomalgModule,
-        [ "Initializes an algebraic Thomas system representing the affine set",
-          "<M>V(</M><A>I</A><M>)</M>." ],
-        "a homalg pointer",
-        "I",
-        [ "Algebraic_Thomas", "Constructors" ]
-        );
+#! @Description
+#!  Initializes an algebraic Thomas system representing the affine set
+#!  <M>V(</M><A>I</A><M>)</M>.
+#! @Returns a homalg pointer
+#! @Arguments I
+#! @ChapterInfo Algebraic Thomas, Constructors
+DeclareAttribute( "QuasiAffineSet",
+                  IsHomalgModule );
 
-DeclareOperationWithDocumentation( "QuasiAffineSet",
-        [ IsScheme, IsHomalgModule ],
-        [ "Initializes an algebraic Thomas system representing the quasi-affine set",
-          "<A>X</A><M> - V(</M><A>J</A><M>)</M>." ],
-        "a homalg pointer",
-        "X, J",
-        [ "Algebraic_Thomas", "Constructors" ]
-        );
+#! @Description
+#!  Initializes an algebraic Thomas system representing the quasi-affine set
+#!  <A>X</A><M> - V(</M><A>J</A><M>)</M>.
+#! @Returns a homalg pointer
+#! @Arguments X, J
+#! @ChapterInfo Algebraic Thomas, Constructors
+DeclareOperation( "QuasiAffineSet",
+                  [ IsScheme, IsHomalgModule ] );
 
-DeclareOperationWithDocumentation( "QuasiAffineSet",
-        [ IsScheme, IsScheme ],
-        [ "Initializes an algebraic Thomas system representing the quasi-affine set",
-          "<A>X</A><M> - </M><A>Y</A>." ],
-        "a homalg pointer",
-        "X, Y",
-        [ "Algebraic_Thomas", "Constructors" ]
-        );
+#! @Description
+#!  Initializes an algebraic Thomas system representing the quasi-affine set
+#!  <A>X</A><M> - </M><A>Y</A>.
+#! @Returns a homalg pointer
+#! @Arguments X, Y
+#! @ChapterInfo Algebraic Thomas, Constructors
+DeclareOperation( "QuasiAffineSet",
+                  [ IsScheme, IsScheme ] );
 
-DeclareAttributeWithDocumentation( "QuasiAffineSet",
-        IsScheme,
-        [ "Initializes an algebraic Thomas system representing the affine set",
-          "<A>X</A>." ],
-        "a homalg pointer",
-        "X",
-        [ "Algebraic_Thomas", "Constructors" ]
-        );
+#! @Description
+#!  Initializes an algebraic Thomas system representing the affine set
+#!  <A>X</A>.
+#! @Returns a homalg pointer
+#! @Arguments X
+#! @ChapterInfo Algebraic Thomas, Constructors
+DeclareAttribute( "QuasiAffineSet",
+                  IsScheme );
 
-DeclareOperationWithDocumentation( "ConstructibleSet",
-        [ IsHomalgModule, IsList ],
-        [ "Initializes an algebraic Thomas system representing the constructible set",
-          "<M>V(</M><A>I</A><M>) - U</M>, where <M>U</M> is the union of all",
-          "<M>V(</M><A>j</A><M>)</M>, <A>j</A> in <A>J</A>." ],
-        "a homalg pointer",
-        "I, J",
-        [ "Algebraic_Thomas", "Constructors" ]
-        );
+#! @Description
+#!  Initializes an algebraic Thomas system representing the constructible set
+#!  <M>V(</M><A>I</A><M>) - U</M>, where <M>U</M> is the union of all
+#!  <M>V(</M><A>j</A><M>)</M>, <A>j</A> in <A>J</A>.
+#! @Returns a homalg pointer
+#! @Arguments I, J
+#! @ChapterInfo Algebraic Thomas, Constructors
+DeclareOperation( "ConstructibleSet",
+                  [ IsHomalgModule, IsList ] );
 
-DeclareOperationWithDocumentation( "ConstructibleSet",
-        [ IsScheme, IsList ],
-        [ "Initializes an algebraic Thomas system representing the constructible set",
-          "<A>X</A> <M>- U</M>, where <M>U</M> is the union of all",
-          "<M>V(</M><A>j</A><M>)</M>, <A>j</A> in <A>J</A>." ],
-        "a homalg pointer",
-        "X, J",
-        [ "Algebraic_Thomas", "Constructors" ]
-        );
+#! @Description
+#!  Initializes an algebraic Thomas system representing the constructible set
+#!  <A>X</A> <M>- U</M>, where <M>U</M> is the union of all
+#!  <M>V(</M><A>j</A><M>)</M>, <A>j</A> in <A>J</A>.
+#! @Returns a homalg pointer
+#! @Arguments X, J
+#! @ChapterInfo Algebraic Thomas, Constructors
+DeclareOperation( "ConstructibleSet",
+                  [ IsScheme, IsList ] );
 
-DeclareOperationWithDocumentation( "ConstructibleSet",
-        [ IsList, IsList ],
-        [ "Initializes an algebraic Thomas system representing the constructible set",
-          "defined by the equations in <A>G</A> and inequations in <A>U</A>." ],
-        "a homalg pointer",
-        "G, U",
-        [ "Algebraic_Thomas", "Constructors" ]
-        );
+#! @Description
+#!  Initializes an algebraic Thomas system representing the constructible set
+#!  defined by the equations in <A>G</A> and inequations in <A>U</A>.
+#! @Returns a homalg pointer
+#! @Arguments G, U
+#! @ChapterInfo Algebraic Thomas, Constructors
+DeclareOperation( "ConstructibleSet",
+                  [ IsList, IsList ] );
 
-DeclareOperationWithDocumentation( "ConstructibleSet",
-        [ IsScheme, IsList, IsList ],
-        [ "Initializes an algebraic Thomas system representing the intersection of the",
-          "constructible set <A>X</A> with <M>R</M>, where <M>R</M> is the constructible",
-          "set defined by the equations in <A>G</A> and inequations in <A>U</A>." ],
-        "a homalg pointer",
-        "X, G, U",
-        [ "Algebraic_Thomas", "Constructors" ]
-        );
+#! @Description
+#!  Initializes an algebraic Thomas system representing the intersection of the
+#!  constructible set <A>X</A> with <M>R</M>, where <M>R</M> is the constructible
+#!  set defined by the equations in <A>G</A> and inequations in <A>U</A>.
+#! @Returns a homalg pointer
+#! @Arguments X, G, U
+#! @ChapterInfo Algebraic Thomas, Constructors
+DeclareOperation( "ConstructibleSet",
+                  [ IsScheme, IsList, IsList ] );
 
-DeclareOperationWithDocumentation( "Project",
-        [ IsScheme ],
-        [ "The projection of a quasi-affine scheme <A>X</A>",
-          "to the affine space given by ...." ],
-        "a homalg pointer",
-        "X, vars",
-        [ "Algebraic_Thomas", "Constructors" ]
-        );
+#! @Description
+#!  The projection of a quasi-affine scheme <A>X</A>
+#!  to the affine space given by ....
+#! @Returns a homalg pointer
+#! @Arguments X, vars
+#! @ChapterInfo Algebraic Thomas, Constructors
+DeclareOperation( "Project",
+                  [ IsScheme ] );
 
-DeclareAttributeWithDocumentation( "CountingPolynomial",
-        IsScheme,
-        [ "The counting polynomial of the quasi-affine scheme <A>X</A>." ],
-        "a univariate polynomial",
-        "X",
-        [ "Algebraic_Thomas", "Attributes" ]
-        );
+#! @Description
+#!  The counting polynomial of the quasi-affine scheme <A>X</A>.
+#! @Returns a univariate polynomial
+#! @Arguments X
+#! @ChapterInfo Algebraic Thomas, Attributes
+DeclareAttribute( "CountingPolynomial",
+                  IsScheme );
 
-DeclareAttributeWithDocumentation( "ADefiningIdealOfComplement",
-        IsScheme,
-        [ "A defining ideal of the complement in ambient space of <A>X</A>." ],
-        "a homalg ideal",
-        "X",
-        [ "Algebraic_Thomas", "Attributes" ]
-        );
+#! @Description
+#!  A defining ideal of the complement in ambient space of <A>X</A>.
+#! @Returns a homalg ideal
+#! @Arguments X
+#! @ChapterInfo Algebraic Thomas, Attributes
+DeclareAttribute( "ADefiningIdealOfComplement",
+                  IsScheme );
 
-DeclareAttributeWithDocumentation( "QuasiAffineDecomposition",
-        IsScheme,
-        [ "A quasi affine decomposition of the constructible set <A>X</A>." ],
-        "a list",
-        "X",
-        [ "Algebraic_Thomas", "Attributes" ]
-        );
+#! @Description
+#!  A quasi affine decomposition of the constructible set <A>X</A>.
+#! @Returns a list
+#! @Arguments X
+#! @ChapterInfo Algebraic Thomas, Attributes
+DeclareAttribute( "QuasiAffineDecomposition",
+                  IsScheme );
