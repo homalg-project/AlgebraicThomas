@@ -6,7 +6,6 @@ doc/manual.six: createautodoc.g makedoc.g maketest.g ListOfDocFiles.g \
 		PackageInfo.g \
 		doc/AlgebraicThomas.bib doc/*.xml \
 		gap/*.gd gap/*.gi examples/*.g
-		gap createautodoc.g
 	        gap makedoc.g
 
 clean:
