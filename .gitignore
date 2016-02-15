@@ -31,9 +31,9 @@ doc/*.toc
 doc/*.out
 doc/manual.lab
 *.DS_Store
+AlgebraicThomas
 doc/AutoDocMainFile.xml
 gap/AutoDocEntries.g
 doc/Chapter*.xml
-AlgebraicThomas
-*.swp
-doc/_*
+doc/title.xml
+doc/AlgebraicThomas.xml
