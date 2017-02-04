@@ -6,7 +6,7 @@ R := Q * "x,y";
 I1 := ZeroLeftSubmodule( R );
 J1 := LeftSubmodule( "x*y", R );
 
-Assert( 0, QuasiAffineDecomposition( QuasiAffineSet( I1^0 ) ) = [ ] );
+Assert( 0, QuasiAffineDecomposition( QuasiAffineSet( I1^0 ) ) = [ QuasiAffineSet( I1^0 ) ] );
 
 V1 := QuasiAffineSet( I1, J1 );
 
