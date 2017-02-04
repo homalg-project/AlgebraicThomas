@@ -122,15 +122,17 @@ InstallMethod( QuasiAffineDecomposition,
         [ IsScheme and IsAlgebraicThomasDecompositionOfConstructibleSetRep ],
         
   function( X )
-    local Y, l;
+    local C, Y, l;
     
     l := [ ];
     
     while not IsEmpty( X ) do
         
-        Y := QuasiAffineSet( Closure( X ), ADefiningIdealOfComplement( X ) );
+        C := Closure( X );
         
-        SetClosure( Y, Closure( X ) );
+        Y := QuasiAffineSet( C, ADefiningIdealOfComplement( X ) );
+        
+        SetClosure( Y, C );
         
         Add( l, Y );
         
