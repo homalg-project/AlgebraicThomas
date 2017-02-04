@@ -37,3 +37,4 @@ gap/AutoDocEntries.g
 doc/Chapter*.xml
 doc/title.xml
 doc/AlgebraicThomas.xml
+doc/_*.xml
